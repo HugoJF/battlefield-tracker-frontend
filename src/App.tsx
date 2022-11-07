@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Title} from "./components/title";
 import {useInterval} from "usehooks-ts";
 import axios from "axios";
 import {Bf3ServerCard} from "./components/bf3-card";
@@ -7,6 +6,8 @@ import * as bf3 from "./bf3";
 import * as bf5 from "./bf5";
 import {Bf5Card} from "./components/bf5-card";
 import {Loading} from "./components/loading";
+import Bf3 from './bf3.png';
+import Bf5 from './bf5.png';
 
 const servers: Record<string, string> = {
     '68.232.174.155:25200': 'https://battlelog.battlefield.com/bf3/servers/show/pc/f11676dd-89fc-4795-97a2-44d7c727037c/BEER-RUSH-24-7-CLASSIC-MAPS-Noobs-Pros/',
@@ -56,21 +57,25 @@ function App() {
     return (
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
             <div>
-                <Title>Battlefield 3</Title>
+                <img className="mx-auto h-16" src={Bf3} alt="Battlefield 3"/>
 
                 {!bf3 && <Loading/>}
-                {bf3 && bf3.map(([address, data]) => (
-                    <Bf3ServerCard key={address} data={data} href={servers[address]}/>
-                ))}
+                <div className="flex flex-col gap-4">
+                    {bf3 && bf3.map(([address, data]) => (
+                        <Bf3ServerCard key={address} data={data} href={servers[address]}/>
+                    ))}
+                </div>
             </div>
 
             <div>
-                <Title>Battlefield 5</Title>
+                <img className="mx-auto h-16" src={Bf5} alt="Battlefield V"/>
 
                 {!bf5 && <Loading/>}
-                {bf5 && bf5.map(server => (
-                    <Bf5Card key={server.gameId} data={server}/>
-                ))}
+                <div className="flex flex-col gap-4">
+                    {bf5 && bf5.map(server => (
+                        <Bf5Card key={server.gameId} data={server}/>
+                    ))}
+                </div>
             </div>
         </div>
     );

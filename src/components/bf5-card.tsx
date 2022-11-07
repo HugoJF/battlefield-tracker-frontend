@@ -12,7 +12,6 @@ export const Bf5Card: FC<Bf5CardProps> = ({data}) => {
         flag="br"
         thumbnailUrl={data.url}
         thumbnailAlt={data.currentMap}
-        href={'#'}
         details={[
             data.mode,
             data.currentMap,

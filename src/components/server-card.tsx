@@ -1,6 +1,7 @@
 import {FC} from "react";
+import clsx from "clsx";
 
-const flagNames ={
+const flagNames = {
     us: 'USA',
     br: 'Brazil',
 }
@@ -10,21 +11,19 @@ type ServerCardProps = {
     flag: 'us' | 'br';
     thumbnailUrl: string;
     thumbnailAlt: string;
-    href: string;
+    href?: string;
     details: string[];
     pills: string[];
 }
 
 export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumbnailAlt, href, details, pills}) => {
-    return <a
-        href={href}
-        target="_blank"
-        className="duration-300 group flex flex-col sm:flex-row items-center space-x-4 p-4 my-4 text-white hover:bg-gray-800 rounded-lg" rel="noreferrer"
+    return <div
+        className="group duration-300 flex flex-col sm:flex-row sm:items-center space-x-4 px-1 sm:p-4 my-4 text-white rounded-lg"
     >
         {/* Image */}
         <div className="mb-4 sm:mb-0 flex-shrink-0">
             <img
-                className="w-[146px] rounded shadow-md"
+                className="mx-auto w-[146px] rounded shadow-md"
                 src={thumbnailUrl}
                 alt={thumbnailAlt}
             />
@@ -41,7 +40,16 @@ export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumb
                         alt={flagNames[flag]}
                     />
                 </div>
-                <h1 className="text-xl">{name}</h1>
+                <h1 className={clsx('text-xl', {'hover:underline': href})}>
+                    {href && <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                        {name}
+                    </a>}
+                    {!href && name}
+                </h1>
             </div>
 
             {/* Details */}
@@ -60,5 +68,5 @@ export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumb
                 ))}
             </div>
         </div>
-    </a>
+    </div>
 }
