@@ -24,9 +24,17 @@ function App() {
     const [bf3, setBf3] = useState<[string, bf3.ServerDetails][] | undefined>(undefined);
     const [bf5, setBf5] = useState<bf5.ServerDetails[] | undefined>(undefined);
 
-    async function refresh() {
+    async function fetchBf3() {
         const search = Object.keys(servers).map(server => `address=${server}`).join('&')
         const bf3 = await axios.get<bf3.Response>(`https://bf3.aws.hugo.dev.br?${search}`)
+
+        const data = Object.entries(bf3.data);
+        const cleanData = data.filter(([ip, data]) => typeof data !== 'string');
+
+        setBf3(cleanData);
+    }
+
+    async function fetchBf5() {
         const bf5 = await axios.get<bf5.Response>('https://api.gametools.network/bfv/servers', {
             params: {
                 name: '',
@@ -39,11 +47,12 @@ function App() {
             }
         });
 
-        const data = Object.entries(bf3.data);
-        const cleanData = data.filter(([ip, data]) => typeof data !== 'string');
-
-        setBf3(cleanData);
         setBf5(bf5.data.servers);
+    }
+
+    function refresh() {
+        fetchBf3();
+        fetchBf5();
     }
 
     useEffect(() => {

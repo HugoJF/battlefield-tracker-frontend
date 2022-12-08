@@ -8,7 +8,7 @@ const flagNames = {
 
 type ServerCardProps = {
     name: string;
-    flag: 'us' | 'br';
+    flag?: 'us' | 'br';
     thumbnailUrl: string;
     thumbnailAlt: string;
     href?: string;
@@ -33,13 +33,14 @@ export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumb
         <div>
             {/* Title */}
             <div className="flex">
-                <div className="flex items-center mr-2 flex-shrink-0">
+                {flag && <div className="flex items-center mr-2 flex-shrink-0">
                     <img
                         width="16"
                         src={`https://cdn.battlelog.com/bl-cdn/cdnprefix/1323198/public/common/flags/${flag.toLowerCase()}.gif`}
                         alt={flagNames[flag]}
                     />
-                </div>
+                </div>}
+
                 <h1 className={clsx('text-xl', {'hover:underline': href})}>
                     {href && <a
                       href={href}
