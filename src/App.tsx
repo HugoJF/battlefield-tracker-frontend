@@ -59,7 +59,7 @@ function App() {
 
     useEffect(() => {
         refresh();
-    }, [refresh])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useInterval(() => {
         refresh()
