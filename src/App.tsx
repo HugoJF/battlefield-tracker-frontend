@@ -57,7 +57,7 @@ function App() {
 
     useEffect(() => {
         refresh();
-    }, [])
+    }, [refresh])
 
     useInterval(() => {
         refresh()
