@@ -8,6 +8,7 @@ import {Bf5Card} from "./components/bf5-card";
 import {Loading} from "./components/loading";
 import Bf3 from './bf3.png';
 import Bf5 from './bf5.png';
+import {sortBy} from "lodash";
 
 const servers: Record<string, string> = {
     '68.232.174.155:25200': 'https://battlelog.battlefield.com/bf3/servers/show/pc/f11676dd-89fc-4795-97a2-44d7c727037c/BEER-RUSH-24-7-CLASSIC-MAPS-Noobs-Pros/',
@@ -47,7 +48,8 @@ function App() {
             }
         });
 
-        setBf5(bf5.data.servers);
+        const data = bf5.data.servers
+        setBf5(sortBy(data, 'playerAmount').reverse());
     }
 
     function refresh() {
