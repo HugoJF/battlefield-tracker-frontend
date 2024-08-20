@@ -1,3 +1,6 @@
+/**
+ * @deprecated
+ */
 export enum GameType {
     ConquestSmall0 = 'Conquest',
     ConquestLarge0 = 'Conquest Large',
@@ -8,6 +11,9 @@ export enum GameType {
     SquadDeathMatch0 = 'Squad Deathmatch',
 }
 
+/**
+ * @deprecated
+ */
 export enum Map {
     MP_001 = 'Grand Bazaar',
     MP_003 = 'Tehran Highway',
@@ -40,54 +46,17 @@ export enum Map {
     XP5_004 = 'Sabalan Pipeline',
 }
 
-interface PlayerDetails {
-    name: string;
-    raw: {
-        guid: string;
-        team: number;
-        squad: number;
-        kills: number;
-        deaths: number;
-        score: number;
-        rank: number;
-        ping: number;
-    }
-}
-
-export interface TeamInfo {
-    tickets: number;
-}
-
 export interface ServerDetails {
-    name: string;
-    map: keyof typeof Map;
-    password: boolean;
-    maxplayers: number;
-    players: PlayerDetails;
-    bots: unknown[];
-    connect: string;
-    ping: number;
-    raw: {
-        numplayers: number;
-        gametype: keyof typeof GameType; // TODO can be enumed
-        roundsplayed: number;
-        roundstotal: number;
-        teams: TeamInfo[];
-        targetscore: number;
-        status: string;
-        ranked: boolean;
-        punkbuster: boolean;
-        uptime: number;
-        roundtime: number;
-        ip: string;
-        punkbusterversion: string;
-        joinqueue: boolean;
-        region: string; // TODO can be enumed
-        pingsite: string;
-        country: 'br' | 'us';
-        quickmatch: boolean;
-        version: string;
-    }
+    url: string;
+    server: string;
+    map: string;
+    playerAmount: number;
+    maxPlayers: number;
+    inQueue: number;
+    serverLink: string;
+    mode: string;
+    smallMode: string;
+    region: string;
+    gameId: string;
 }
-
-export type Response = Record<string, ServerDetails>;
+export type Response = { servers: ServerDetails[] };

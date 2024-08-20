@@ -1,12 +1,13 @@
 import {ServerCard} from "./server-card";
 import React, {FC} from "react";
 import * as bf5 from "../interfaces/bf5";
+import {ServerDetails} from "../interfaces/bf4";
 
-interface Bf5CardProps {
-    data: bf5.ServerDetails
+interface Bf4CardProps {
+    data: ServerDetails
 }
 
-export const Bf5Card: FC<Bf5CardProps> = ({data}) => {
+export const Bf4Card: FC<Bf4CardProps> = ({data}) => {
     return <ServerCard
         name={data.prefix + data.description}
         flag="br"

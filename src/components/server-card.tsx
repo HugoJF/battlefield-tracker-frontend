@@ -10,7 +10,7 @@ type ServerCardProps = {
     name: string;
     flag?: 'us' | 'br';
     thumbnailUrl: string;
-    thumbnailAlt: string;
+    thumbnailAlt?: string;
     href?: string;
     details: string[];
     pills: string[];
@@ -62,6 +62,7 @@ export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumb
             <div className="mt-1 flex space-x-4 text-sm tracking-tight">
                 {pills.map(pill => (
                     <div
+                        key={pill}
                         className="flex py-1 px-3 text-gray-300 font-light bg-gray-800 rounded-full"
                     >
                         {pill}
