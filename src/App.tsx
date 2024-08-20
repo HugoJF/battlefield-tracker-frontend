@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {useInterval} from "usehooks-ts";
 import axios from "axios";
 import {Bf3ServerCard} from "./components/bf3-card";
-import * as bf3 from "./bf3";
-import * as bf5 from "./bf5";
+import * as bf3 from "./interfaces/bf3";
+import * as bf5 from "./interfaces/bf5";
 import {Bf5Card} from "./components/bf5-card";
 import {Loading} from "./components/loading";
-import Bf3 from './bf3.png';
-import Bf5 from './bf5.png';
+import Bf3 from './resources/bf3.png';
+import Bf5 from './resources/bf5.png';
 import {sortBy} from "lodash";
 
 const servers: Record<string, string> = {

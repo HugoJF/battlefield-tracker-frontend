@@ -1,6 +1,6 @@
 import {FC, useMemo} from "react";
 import {ServerCard} from "./server-card";
-import {GameType, Map, ServerDetails, TeamInfo} from "../bf3";
+import {GameType, Map, ServerDetails, TeamInfo} from "../interfaces/bf3";
 
 function gametype(type: keyof typeof GameType) {
     if (type in GameType) {

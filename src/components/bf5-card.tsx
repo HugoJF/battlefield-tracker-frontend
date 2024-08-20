@@ -1,6 +1,6 @@
 import {ServerCard} from "./server-card";
 import React, {FC} from "react";
-import * as bf5 from "../bf5";
+import * as bf5 from "../interfaces/bf5";
 
 interface Bf5CardProps {
     data: bf5.ServerDetails
