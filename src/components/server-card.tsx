@@ -1,5 +1,6 @@
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 import clsx from "clsx";
+import {MapPin, Pin, Users} from "lucide-react";
 
 const flagNames = {
     us: 'USA',
@@ -13,12 +14,39 @@ type ServerCardProps = {
     thumbnailAlt?: string;
     href?: string;
     details: string[];
-    pills: string[];
+    playerCount: number;
+    maxPlayers: number;
+    inQue?: number;
 }
 
-export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumbnailAlt, href, details, pills}) => {
+function getPlayerCountColor(howFilled: number) {
+    if (howFilled >= 95) {
+        return 'text-red-500';
+    }
+
+    if (howFilled > 70) {
+        return 'text-yellow-500';
+    }
+
+    return 'text-gray-400';
+}
+
+export const ServerCard: FC<ServerCardProps> = ({
+                                                    name,
+                                                    flag,
+                                                    thumbnailUrl,
+                                                    thumbnailAlt,
+                                                    href,
+                                                    details,
+                                                    playerCount,
+                                                    maxPlayers,
+                                                    inQue
+                                                }) => {
+    const howFilled = Math.round((playerCount / maxPlayers) * 100);
+    const playerCountColor = getPlayerCountColor(howFilled);
+
     return <div
-        className="group duration-300 flex flex-col sm:flex-row sm:items-center space-x-4 px-1 sm:p-4 my-4 text-white rounded-lg"
+        className="group duration-300 flex flex-col sm:flex-row sm:items-stretch space-x-4 text-white rounded-lg"
     >
         {/* Image */}
         <div className="mb-4 sm:mb-0 flex-shrink-0">
@@ -30,7 +58,7 @@ export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumb
         </div>
 
         {/* Information */}
-        <div>
+        <div className="flex flex-col min-w-0">
             {/* Title */}
             <div className="flex">
                 {flag && <div className="flex items-center mr-2 flex-shrink-0">
@@ -41,11 +69,14 @@ export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumb
                     />
                 </div>}
 
-                <h1 className={clsx('text-xl', {'hover:underline': href})}>
+                <h1
+                    className={clsx('text-lg overflow-ellipsis whitespace-nowrap overflow-hidden truncate', {'hover:underline': href})}
+                    title={name}
+                >
                     {href && <a
-                      href={href}
-                      target="_blank"
-                      rel="noreferrer"
+                        href={href}
+                        target="_blank"
+                        rel="noreferrer"
                     >
                         {name}
                     </a>}
@@ -53,22 +84,20 @@ export const ServerCard: FC<ServerCardProps> = ({name, flag, thumbnailUrl, thumb
                 </h1>
             </div>
 
+            {/*Dead space because I'm too lazy to figure out how to handle the flag alignment*/}
+            <div className="flex-grow"></div>
+
             {/* Details */}
-            <h2 className="text-gray-400 tracking-tight">
-                {details.join(' • ')}
+            <h2 className="flex items-center gap-1 text-sm text-gray-400 tracking-tight">
+                <MapPin size={18}/>
+                <span>{details.join(' • ')}</span>
             </h2>
 
-            {/* Pills */}
-            <div className="mt-1 flex space-x-4 text-sm tracking-tight">
-                {pills.map(pill => (
-                    <div
-                        key={pill}
-                        className="flex py-1 px-3 text-gray-300 font-light bg-gray-800 rounded-full"
-                    >
-                        {pill}
-                    </div>
-                ))}
-            </div>
+            <p className={clsx('flex items-center gap-1 text-sm', playerCountColor)}>
+                <Users size={18} className="text-gray-400"/>
+                <span>{playerCount}/{maxPlayers}</span>
+                {!!inQue && <span>+ {inQue}</span>}
+            </p>
         </div>
     </div>
 }

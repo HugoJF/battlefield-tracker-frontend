@@ -7,23 +7,14 @@ import {sortBy} from "lodash";
 import {useBf3Servers} from "../queries/bf3";
 
 export const Bf3Lane = () => {
-    const {data, refetch, isLoading} = useBf3Servers();
+    const {data, isLoading} = useBf3Servers();
 
     const brServers = data?.data.servers.filter((server) => server.region === 'SAm');
     const servers = sortBy(brServers, 'playerAmount').reverse();
 
-    console.log({
-        br: brServers?.length,
-        servers: data?.data.servers.length,
-    })
-
-    useInterval(() => {
-        void refetch()
-    }, 30000);
-
     return <div>
         <img
-            className="mx-auto h-16"
+            className="mx-auto h-16 mb-8"
             src={Bf3}
             alt="Battlefield 3"
         />

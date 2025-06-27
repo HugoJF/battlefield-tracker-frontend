@@ -7,17 +7,13 @@ import {Bf5Card} from "../components/bf5-card";
 import {useBf5Servers} from "../queries/bf5";
 
 export const Bf5Lane = () => {
-    const {data, refetch, isLoading} = useBf5Servers();
+    const {data, isLoading} = useBf5Servers();
 
     const servers = sortBy(data?.data.servers, 'playerAmount').reverse();
 
-    useInterval(() => {
-        void refetch()
-    }, 30000);
-
     return <div>
         <img
-            className="mx-auto h-16"
+            className="mx-auto h-16 mb-8"
             src={Bf5}
             alt="Battlefield V"
         />

@@ -12,12 +12,11 @@ export const Bf5Card: FC<Bf5CardProps> = ({data}) => {
         flag="br"
         thumbnailUrl={data.url}
         thumbnailAlt={data.currentMap}
+        playerCount={data.playerAmount}
+        maxPlayers={data.maxPlayers}
         details={[
             data.mode,
             data.currentMap,
-        ]}
-        pills={[
-            `${data.playerAmount} / ${data.maxPlayers} + ${data.inQue} players`,
         ]}
     />
 }

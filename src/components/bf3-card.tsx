@@ -12,15 +12,13 @@ export const Bf3ServerCard: FC<Bf3CardProps> = ({data}) => {
         data.map,
     ].filter(Boolean);
 
-    const pills = [
-        `${data.playerAmount} / ${data.maxPlayers} players`,
-    ].filter(Boolean)
-
     return <ServerCard
         name={data.server}
         flag="br"
         thumbnailUrl={data.url}
+        href={data.serverLink}
+        playerCount={data.playerAmount}
+        maxPlayers={data.maxPlayers}
         details={details}
-        pills={pills}
     />
 }

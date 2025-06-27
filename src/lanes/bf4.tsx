@@ -7,17 +7,14 @@ import {useBf4Servers} from "../queries/bf4";
 import {Bf4Card} from "../components/bf4-card";
 
 export const Bf4Lane = () => {
-    const {data, refetch, isLoading} = useBf4Servers();
+    const {data, isLoading} = useBf4Servers();
 
-    const servers = sortBy(data?.data.servers, 'playerAmount').reverse();
-
-    useInterval(() => {
-        void refetch()
-    }, 30000);
+    const rawServers = data?.data.servers ?? [];
+    const servers = rawServers.sort((a, b) => (b.playerAmount + b.inQue) - (a.playerAmount + a.inQue));
 
     return <div>
         <img
-            className="mx-auto h-16 mb-4"
+            className="mx-auto h-16 mb-8"
             src={Bf4}
             alt="Battlefield 4"
         />
