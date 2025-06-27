@@ -2,7 +2,6 @@ import Bf3 from "../resources/bf3.png";
 import {Loading} from "../components/loading";
 import {Bf3ServerCard} from "../components/bf3-card";
 import React from "react";
-import {useInterval} from "usehooks-ts";
 import {sortBy} from "lodash";
 import {useBf3Servers} from "../queries/bf3";
 

@@ -1,7 +1,6 @@
 import {ServerCard} from "./server-card";
 import React, {FC} from "react";
 import {ServerDetails} from "../interfaces/bf4";
-import {Users} from "lucide-react";
 
 interface Bf4CardProps {
     data: ServerDetails

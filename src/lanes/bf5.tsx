@@ -1,6 +1,5 @@
 import {Loading} from "../components/loading";
 import React from "react";
-import {useInterval} from "usehooks-ts";
 import {sortBy} from "lodash";
 import Bf5 from "../resources/bf5.png";
 import {Bf5Card} from "../components/bf5-card";

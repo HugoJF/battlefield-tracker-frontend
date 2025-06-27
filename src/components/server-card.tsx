@@ -1,6 +1,6 @@
-import {FC, ReactNode} from "react";
+import {FC} from "react";
 import clsx from "clsx";
-import {MapPin, Pin, Users} from "lucide-react";
+import {MapPin, Users} from "lucide-react";
 
 const flagNames = {
     us: 'USA',

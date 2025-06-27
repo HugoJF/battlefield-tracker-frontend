@@ -1,7 +1,5 @@
 import {Loading} from "../components/loading";
 import React from "react";
-import {useInterval} from "usehooks-ts";
-import {sortBy} from "lodash";
 import Bf4 from "../resources/bf4.png";
 import {useBf4Servers} from "../queries/bf4";
 import {Bf4Card} from "../components/bf4-card";
